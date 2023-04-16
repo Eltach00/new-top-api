@@ -1,14 +1,18 @@
 import { Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document, HydratedDocument } from 'mongoose';
+import {
+  IProduct,
+  IProductCharacteristic,
+} from 'src/shared/interfaces/product.interface';
 
-class ProductCharacteristic {
+class ProductCharacteristic implements IProductCharacteristic {
   @Prop()
   name: string;
   @Prop()
   value: string;
 }
 
-export class ProductModel extends Document {
+export class ProductModel extends Document implements IProduct {
   @Prop()
   title: string;
 
@@ -36,12 +40,12 @@ export class ProductModel extends Document {
   @Prop()
   disAdvantages: string;
 
-  @Prop({ type: () => [String] })
+  @Prop([String])
   categories: string[];
-  @Prop({ type: () => [String] })
+  @Prop([String])
   tags: string[];
 
-  @Prop({ type: () => [ProductCharacteristic], _id: false })
+  @Prop([ProductCharacteristic])
   characteristics: ProductCharacteristic[];
 }
 

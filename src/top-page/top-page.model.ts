@@ -1,14 +1,13 @@
 import { Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import {
+  IHhData,
+  ITopPageAdvantage,
+  ITopPageModel,
+  TopLevelCategory,
+} from '../shared/interfaces/top-page.interface';
 
-export enum TopLevelCategory {
-  Courses,
-  Services,
-  Books,
-  Products,
-}
-
-export class HhData {
+export class HhData implements IHhData {
   @Prop()
   count: number;
 
@@ -25,7 +24,7 @@ export class HhData {
   updatedAt: Date;
 }
 
-export class TopPageAdvantage {
+export class TopPageAdvantage implements ITopPageAdvantage {
   @Prop()
   title: string;
 
@@ -33,7 +32,7 @@ export class TopPageAdvantage {
   description: string;
 }
 
-export class TopPageModel extends Document {
+export class TopPageModel extends Document implements ITopPageModel {
   @Prop({ enum: TopLevelCategory })
   firstCategory: TopLevelCategory;
 

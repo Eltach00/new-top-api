@@ -1,7 +1,8 @@
 import { Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
+import { IReviewModel } from 'src/shared/interfaces/review.interface';
 
-export class ReviewModel extends Document {
+export class ReviewModel extends Document implements IReviewModel {
   @Prop()
   name: string;
 
