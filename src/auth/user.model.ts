@@ -3,15 +3,15 @@ import { Document } from 'mongoose';
 import { IAuth } from 'src/shared/interfaces/auth.interface';
 
 @Schema()
-export class AuthModel extends Document implements IAuth {
+export class UserModel extends Document implements IAuth {
   @Prop({ unique: true })
   email: string;
 
   @Prop()
-  passwordHash: number;
+  passwordHash: string;
 
   @Prop({ default: new Date() })
   creationDate: Date;
 }
 
-export const AuthSchema = SchemaFactory.createForClass(AuthModel);
+export const UserSchema = SchemaFactory.createForClass(UserModel);
