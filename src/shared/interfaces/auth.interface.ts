@@ -1,6 +1,6 @@
 export interface IAuth {
   _id?: string;
   email: string;
-  passwordHash: number;
+  passwordHash: string;
   creationDate?: Date;
 }
