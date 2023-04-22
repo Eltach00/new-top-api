@@ -1,11 +1,13 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
 import {
   IHhData,
   ITopPageAdvantage,
   ITopPageModel,
   TopLevelCategory,
 } from '../shared/interfaces/top-page.interface';
+
+export type TopPageDocument = HydratedDocument<TopPageModel>;
 
 export class HhData implements IHhData {
   @Prop()
@@ -32,7 +34,8 @@ export class TopPageAdvantage implements ITopPageAdvantage {
   description: string;
 }
 
-export class TopPageModel extends Document implements ITopPageModel {
+@Schema()
+export class TopPageModel implements ITopPageModel {
   @Prop({ enum: TopLevelCategory })
   firstCategory: TopLevelCategory;
 
