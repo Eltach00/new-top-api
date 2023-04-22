@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthDto } from './dto/auth.dto';
 import { Model } from 'mongoose';
-import { UserModel } from './user.model';
+import { UserDocument, UserModel } from './user.model';
 import { compare, genSalt, hash } from 'bcryptjs';
 import { InjectModel } from '@nestjs/mongoose';
 import { USER_NOT_FOUND_ERROR, WRONG_PASSWORD_ERROR } from './auth.constants';
@@ -10,7 +10,8 @@ import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel(UserModel.name) private readonly userModel: Model<UserModel>,
+    @InjectModel(UserModel.name)
+    private readonly userModel: Model<UserDocument>,
     private readonly jwtService: JwtService,
   ) {}
   async createUser(dto: AuthDto) {
