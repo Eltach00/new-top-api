@@ -1,4 +1,4 @@
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, HydratedDocument } from 'mongoose';
 import {
   IProduct,
@@ -12,7 +12,10 @@ class ProductCharacteristic implements IProductCharacteristic {
   value: string;
 }
 
-export class ProductModel extends Document implements IProduct {
+export type ProductDocument = HydratedDocument<ProductModel>;
+
+@Schema()
+export class ProductModel implements IProduct {
   @Prop()
   title: string;
 
