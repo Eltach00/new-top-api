@@ -7,9 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
+    step:
       - uses: actions/checkout@master
-      - name: Publish to registry
+      - name: Publish to registy
         uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           registry: docker.pkg.github.com
