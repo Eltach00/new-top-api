@@ -45,7 +45,7 @@ export class TopPageModel implements ITopPageModel {
   @Prop({ unique: true })
   alias: string;
 
-  @Prop()
+  @Prop({ text: true })
   title: string;
 
   @Prop()

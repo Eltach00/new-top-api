@@ -27,10 +27,29 @@ export class TopPageService {
   async findAll() {
     return this.topPageMdoel.find().exec();
   }
+  async findByTitle(text: string) {
+    return this.topPageMdoel
+      .find({ $text: { $search: text, $caseSensitive: false } })
+      .exec();
+  }
 
   async findByCategory(firstCategory: TopLevelCategory) {
     return this.topPageMdoel
-      .find({ firstCategory }, { alias: 1, secondCategory: 1, title: 1 })
+      .aggregate()
+      .match({
+        firstCategory,
+      })
+      .group({
+        _id: {
+          secondCategory: '$secondCategory',
+        },
+        pages: {
+          $push: {
+            alias: '$alias',
+            title: '$title',
+          },
+        },
+      })
       .exec();
   }
 
