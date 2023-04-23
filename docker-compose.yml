@@ -1,17 +1,5 @@
 version: '3'
 services:
-  mongo:
-    image: mongo:4.4.4
-    container_name: top-api-mongo
-    restart: always
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin
-    ports:
-      - 27017:27017
-    volumes:
-      - ./mongo-data-4.4:/data/db
-    command: --wiredTigerCacheSizeGB 1.
   top.api:
     image: docker.pkg.github.com/Eltach00/new-top-api/new-top-api:develop
     container_name: top-api
