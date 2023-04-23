@@ -13,7 +13,7 @@ services:
       - ./mongo-data-4.4:/data/db
     command: --wiredTigerCacheSizeGB 1.
   top.api:
-    image: docker.pkg.github.com/alaricode/top-api-demo/top-api-demo:develop
+    image: docker.pkg.github.com/Eltach00/new-top-api/new-top-api:develop
     container_name: top-api
     restart: always
     ports:
