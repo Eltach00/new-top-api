@@ -28,23 +28,21 @@ export class ReviewController {
   ) {}
 
   @UsePipes(new ValidationPipe())
-  @HttpCode(HttpStatus.CREATED)
   @Post('create')
   async create(@Body() dto: CreateReviewDto) {
+    return this.reviewService.create(dto);
+  }
+
+  @UsePipes(new ValidationPipe())
+  @Post('notify')
+  async notify(@Body() dto: CreateReviewDto) {
     const message =
       `Имя: ${dto.name}\n` +
       `Заголовок: ${dto.title}\n` +
       `Описание: ${dto.description}\n` +
       `Рейтинг: ${dto.rating}\n` +
-      `ID продукта: ${dto.productId}`;
+      `ID Продукта: ${dto.productId}`;
     return this.telegramService.sendMessage(message);
-  }
-
-  @UsePipes(new ValidationPipe())
-  @HttpCode(HttpStatus.CREATED)
-  @Post('notify')
-  async notify(@Body() dto: CreateReviewDto) {
-    return this.reviewService.create(dto);
   }
 
   @UseGuards(JwtAuthGuard)
